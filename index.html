@@ -32,7 +32,6 @@
                      html += `<ul id="${key}">` + jsonToHTML(value) + '</ul>'
                  }
                  else if (Array.isArray(value)) {
-                     console.log(key)
                      html += '<li>' + key + '</li>'
                      html += `<ul id="${key}">`
                     for (var item in Object.values(value)) {
@@ -52,7 +51,6 @@
                     html += '</ul>'
                  }
                  else {
-                     console.log(key)
                      html += `<ul id="${key}"><li>` + key + `<ul id="${key}">` + value + '</ul>' + '</li></ul>'
                  }
              }
