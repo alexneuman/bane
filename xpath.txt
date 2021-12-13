@@ -1,0 +1,36 @@
+
+1. JSON FILE 1
+
+A. Get classification of all the medications
+
+//ul[@id="medications"]/li/text()
+>> aceinhibitors, antigenal, anticoagulants, betaBlocker, diuretic, mineral
+
+B. Get name of all the medications
+
+//ul[@id="medications"]//ul[@id="name"]/text()
+>> lisinopril, nitroglycerin, warfarin sodium, metoprolol tartrate, furosemide, potassium chloride
+
+C. Get dosage of all the medications
+
+//ul[@id="dose"]/text()
+>> 1 tab X 6
+
+D. get names of of imaging locations
+//ul[@id="imaging"]/ul[@id="name"]/li/ul/text()
+>> Main Hospital Radiology X3
+
+
+2. JSON FILE 2
+
+A. Get the head nodes in the "elements" array containing the names of the headers
+
+//ul[@id="elements"]/*[position() mod 2 = 1]
+
+B. Get each of the values for the subelements in the "elements" array
+
+.//ul[@id="rows"]/ul/ul//li/ul/text()
+
+C. Get only the value of "status" nested in the "elements" array
+
+//ul[@id="elements"]//*[contains(text(), "stat")]/*[1]/text()

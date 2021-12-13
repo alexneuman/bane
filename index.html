@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bain</title>
+</head>
+<body>
+    <div id="data"></div>
+</body>
+<script>
+    let jsonToHTML = (data) => {
+        let html = ''
+        if (Array.isArray(data)) {
+            // html += '</ul>'
+            for (const d of Object.entries(data)) {
+                if (Array.isArray(d)){
+                    html += `<div>${d[0]}</div>`
+                    html += jsonToHTML(d[1])
+                } else {
+                    html += `<div>${d[0]}</div>`
+                    html += jsonToHTML(d[1])
+                }
+                // html += jsonToHTML(d)
+            }
+        }
+        else
+        {
+            for (const [key, value] of Object.entries(data)) {
+                 if (value.constructor == Object) {
+
+                     html += '<li>' + key + '</li>'
+                     html += `<ul id="${key}">` + jsonToHTML(value) + '</ul>'
+                 }
+                 else if (Array.isArray(value)) {
+                     console.log(key)
+                     html += '<li>' + key + '</li>'
+                     html += `<ul id="${key}">`
+                    for (var item in Object.values(value)) {
+                        var i = value[item]
+                        if (i.constructor == Object) {
+                            html += jsonToHTML(i) 
+                        }
+
+                        else if (value.constructor == Object) {
+                            html += json_to_html(i) + '</li>'
+                            html += '</ul>'
+                        }
+                        else {
+                            html += '<li>' + i + '</li>'
+                        }
+                    }
+                    html += '</ul>'
+                 }
+                 else {
+                     console.log(key)
+                     html += `<ul id="${key}"><li>` + key + `<ul id="${key}">` + value + '</ul>' + '</li></ul>'
+                 }
+             }
+        }
+        return html
+    }
+    fetch("data2.json")
+        .then(response => response.json())
+        .then(data => {
+            var ele = document.getElementById("data");
+            const html = jsonToHTML(data)
+            ele.innerHTML += html
+            console.log(data)
+        });
+</script>
+</html>

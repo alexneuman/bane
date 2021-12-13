@@ -1,0 +1,25 @@
+
+
+function checkIfNested(item):
+    if not item.isString and item.length > 1:
+        return True
+    else:
+        return False
+
+function createElement(item):
+    dom.append('<div> item </div>')
+
+function flatten (item):
+    if checkIfNested(item):
+        for i in item:
+            flatten(i)
+    else:
+        createElement(item)
+
+
+for each key, value in data.items
+    while True:
+        if checkIfNested(value):
+            flatten(value)
+        else:
+            break
