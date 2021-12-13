@@ -13,7 +13,6 @@
     let jsonToHTML = (data) => {
         let html = ''
         if (Array.isArray(data)) {
-            // html += '</ul>'
             for (const d of Object.entries(data)) {
                 if (Array.isArray(d)){
                     html += `<div>${d[0]}</div>`
@@ -22,7 +21,6 @@
                     html += `<div>${d[0]}</div>`
                     html += jsonToHTML(d[1])
                 }
-                // html += jsonToHTML(d)
             }
         }
         else
@@ -67,7 +65,6 @@
             var ele = document.getElementById("data");
             const html = jsonToHTML(data)
             ele.innerHTML += html
-            console.log(data)
         });
 </script>
 </html>
